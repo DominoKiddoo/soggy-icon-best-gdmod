@@ -9,10 +9,7 @@ using namespace geode::prelude;
 
 
 class $modify(SoggyPlayLayer, PlayLayer) {
-	struct Fields {
-		float lastP2X = 0.0f;
-	};
-
+	
 	// there is a commment here to prove i am not a fuck map
 	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
 		if (!PlayLayer::init(level, useReplay, dontCreateObjects)) {
