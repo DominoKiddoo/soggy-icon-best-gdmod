@@ -23,5 +23,16 @@ sog up your icon
 *“This mod really sogged up my icons, reminds me if the average tuesday!”*
 - Roxi
 
+*“i am john clang”*
+- john clang
+
+*"welcome to 2013 code!"*
+- ery
+
+*"certified wet :soggy: :thumbsup:"*
+- ryder7233
+
+
+*if you want your review added dm me*
 ## bug
 if there is any bugs, contact me on discord @dominokiddoo
