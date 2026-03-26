@@ -7,3 +7,6 @@
 # 1.0.2
 - Changed to pointers for speed
 - Prefixed ID's with mod namespace (_spr)
+
+# 1.0.3
+- Changed mod logo so it doesn't look like [soggify](mod:firee.soggify))

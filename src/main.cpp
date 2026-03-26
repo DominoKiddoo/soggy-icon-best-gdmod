@@ -72,7 +72,6 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 		} else {
 			sogIconP2->setVisible(false);
 		}
-
 		
 
 

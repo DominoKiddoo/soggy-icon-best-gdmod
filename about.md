@@ -32,7 +32,14 @@ sog up your icon
 *"certified wet :soggy: :thumbsup:"*
 - ryder7233
 
+*"Uhhh 5/5 life-changing"y*
+- arram
+
+
+*"horrible mod 1/10"*
+- EVIL soggy (not a trustworthy source imo but ok)
 
 *if you want your review added dm me*
+
 ## bug
 if there is any bugs, contact me on discord @dominokiddoo
