@@ -4,6 +4,7 @@
 #include <Geode/modify/PlayLayer.hpp>
 #include <Geode/modify/GJBaseGameLayer.hpp>
 #include <Geode/binding/GJGameState.hpp>
+#include "../include/globalVars.hpp"
 
 using namespace geode::prelude;
 
@@ -20,30 +21,39 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 			return false;
 		}
 
-		auto iconSize = Mod::get()->getSettingValue<float>("icon-scale");
+		m_fields->m_sogIcon = nullptr;
+   		m_fields->m_sogIconP2 = nullptr;
+
+		if (!Mod::get()->getSettingValue<bool>("disablesog")) {
+			auto iconSize = Mod::get()->getSettingValue<float>("icon-scale");
 
 
-		m_fields->m_sogIcon = CCSprite::create("sog.png"_spr);
-        m_fields->m_sogIcon->setID("sogIcon"_spr);
-        m_fields->m_sogIcon->setScale(iconSize - 0.5f);
-        m_fields->m_sogIcon->setZOrder(50667); // because it spells soggy hahahaha i am so funny index staff please laugh
+			m_fields->m_sogIcon = CCSprite::create("sog.png"_spr);
+			m_fields->m_sogIcon->setID("sogIcon"_spr);
+			m_fields->m_sogIcon->setScale(iconSize - 0.5f);
+			m_fields->m_sogIcon->setZOrder(50667); // because it spells soggy hahahaha i am so funny index staff please laugh
 
-        
-        m_fields->m_sogIconP2 = CCSprite::create("soginverted.png"_spr);
-        m_fields->m_sogIconP2->setID("sogIconP2"_spr);
-        m_fields->m_sogIconP2->setScale(iconSize - 0.5f);
-        m_fields->m_sogIconP2->setZOrder(50667);
-        m_fields->m_sogIconP2->setVisible(false);
+			
 
-        this->m_objectLayer->addChild(m_fields->m_sogIcon);
-        this->m_objectLayer->addChild(m_fields->m_sogIconP2);
-		this->schedule(schedule_selector(SoggyPlayLayer::updSog));
+			m_fields->m_sogIconP2 = CCSprite::create("soginverted.png"_spr);
+			m_fields->m_sogIconP2->setID("sogIconP2"_spr);
+			m_fields->m_sogIconP2->setScale(iconSize - 0.5f);
+			m_fields->m_sogIconP2->setZOrder(50667);
+			m_fields->m_sogIconP2->setVisible(false);
 
+			this->m_objectLayer->addChild(m_fields->m_sogIcon);
+			this->m_objectLayer->addChild(m_fields->m_sogIconP2);
+			this->schedule(schedule_selector(SoggyPlayLayer::updSog));
+		}
 
 		return true;
 	}
 
 	void updSog(float dt) {
+
+		if (!m_fields->m_sogIcon || !m_fields->m_sogIconP2) {
+        	return; 
+    	}
 		auto baseGameLayer = GJBaseGameLayer::get();
 
 		auto sogIcon = m_fields->m_sogIcon;
@@ -74,7 +84,50 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 		}
 		
 
+	}
+
+	void onExit() {
+		PlayLayer::onExit();
+
+		auto nextScene = CCDirector::sharedDirector()->getRunningScene();
+		if (nextScene && !nextScene->getChildByID("PlayLayer")) {
+			if (playingSoggyLevel) {
+				playingSoggyLevel = false;
+
+				if (Mod::get()->getSettingValue<bool>("disablesog")) {
+					return;
+				}
+				Loader::get()->queueInMainThread([]() {
+
+					auto dialogue = DialogObject::create(
+						"soggy cat", 
+						"<cr>HAHA! YOU FAILED MY CHALLENGE!! TRY AGAIN WHEN YOU HAVE THE SKILL, THEN YOU MAY DISABLE ME!</c>", 
+						1, 
+						0.7f, 
+						true, 
+						{255, 255, 255}
+					);
+
+					auto dialogueArray = CCArray::create();
+					dialogueArray->addObject(dialogue);
+
+					auto layer = DialogLayer::createDialogLayer(nullptr, dialogueArray, 2);
+					layer->animateInRandomSide();
+
+
+					auto soggyPortrait = CCSprite::create("sog.png"_spr);
+					soggyPortrait->setPosition(layer->m_characterSprite->getPosition());
+					soggyPortrait->setScale(0.7f);
+					layer->m_mainLayer->addChild(soggyPortrait);
+					layer->m_characterSprite->setVisible(false);
+					CCScene::get()->addChild(layer, 100);
+
+				});
+				
+			}
+		}
 
 	}
+
 };
 

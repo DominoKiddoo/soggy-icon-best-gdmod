@@ -8,7 +8,7 @@
 	},
 	"id": "dominodev.soggy-icon",
 	"name": "soggy icon",
-	"version": "v1.0.3",
+	"version": "v1.0.4",
 	"developer": "dominodev",
 	"description": "sog up your icon",
 	"dependencies": {
@@ -18,6 +18,10 @@
 	"resources": {
 		"sprites": [
 			"resources/*.png"
+		],
+		"files": [
+			"resources/level.txt",
+			"resources/383158.mp3"
 		]
 	},
 
@@ -28,6 +32,13 @@
 			"name": "icon scale",
 			"description": "yeah can i have one extra large soggy please",
 			"min": 1
+		},
+
+		"disablesog": {
+			"type": "bool",
+			"default": false,
+			"name": "Disable",
+			"description": "DONT YOU DO IT! DONT YOU DO IT! SOG IS LOVE, SOG IS LIFE!"
 		}
 	},
 
