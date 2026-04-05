@@ -100,7 +100,7 @@ class $modify(SoggyEndLevelLayer, EndLevelLayer) {
             
 
 
-            CCScene::get()->addChild(layer, 100);
+            CCScene::get()->addChild(layer); // hello index staff. you do actually have to add it to the scene, but i've stopped hardcoding z order. DAMN IN HINDSIGHT THIS COMMENT LOOKS AI HELP 
             return;
         }
 

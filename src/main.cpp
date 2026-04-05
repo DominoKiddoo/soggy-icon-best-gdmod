@@ -120,7 +120,7 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 					soggyPortrait->setScale(0.7f);
 					layer->m_mainLayer->addChild(soggyPortrait);
 					layer->m_characterSprite->setVisible(false);
-					CCScene::get()->addChild(layer, 100);
+					CCScene::get()->addChild(layer);
 
 				});
 				

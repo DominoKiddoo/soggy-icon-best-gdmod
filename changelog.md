@@ -1,3 +1,6 @@
+# 1.0.5
+- Removed hardcoding Z order for Dialogue
+
 # 1.0.4
 - Added disable option (DON'T EVEN **THINK** ABOUT USING IT ~~or maybe do because i spent too long coding it~~)
 - More reviews
