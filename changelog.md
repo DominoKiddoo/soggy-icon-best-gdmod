@@ -3,6 +3,9 @@
 
 
 # 1.0.5
+- Used onQuit() instead of onExit()
+
+# 1.0.5
 - Removed hardcoding Z order for Dialogue
 
 # 1.0.4

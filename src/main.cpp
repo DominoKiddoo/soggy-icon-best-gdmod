@@ -86,46 +86,45 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 
 	}
 
-	void onExit() {
-		PlayLayer::onExit();
+	void onQuit() {
+		PlayLayer::onQuit();
 
-		auto nextScene = CCDirector::sharedDirector()->getRunningScene();
-		if (nextScene && !nextScene->getChildByID("PlayLayer")) {
-			if (playingSoggyLevel) {
-				playingSoggyLevel = false;
-
-				if (Mod::get()->getSettingValue<bool>("disablesog")) {
-					return;
-				}
-				Loader::get()->queueInMainThread([]() {
-
-					auto dialogue = DialogObject::create(
-						"soggy cat", 
-						"<cr>HAHA! YOU FAILED MY CHALLENGE!! TRY AGAIN WHEN YOU HAVE THE SKILL, THEN YOU MAY DISABLE ME!</c>", 
-						1, 
-						0.7f, 
-						true, 
-						{255, 255, 255}
-					);
-
-					auto dialogueArray = CCArray::create();
-					dialogueArray->addObject(dialogue);
-
-					auto layer = DialogLayer::createDialogLayer(nullptr, dialogueArray, 2);
-					layer->animateInRandomSide();
-
-
-					auto soggyPortrait = CCSprite::create("sog.png"_spr);
-					soggyPortrait->setPosition(layer->m_characterSprite->getPosition());
-					soggyPortrait->setScale(0.7f);
-					layer->m_mainLayer->addChild(soggyPortrait);
-					layer->m_characterSprite->setVisible(false);
-					CCScene::get()->addChild(layer);
-
-				});
-				
+		if (playingSoggyLevel) {
+			playingSoggyLevel = false;
+			
+			if (Mod::get()->getSettingValue<bool>("disablesog")) {
+				return;
 			}
+			
+			Loader::get()->queueInMainThread([this]() {
+				auto dialogue = DialogObject::create(
+					"soggy cat", 
+					"<cr>HAHA! YOU FAILED MY CHALLENGE!! TRY AGAIN WHEN YOU HAVE THE SKILL, THEN YOU MAY DISABLE ME!</c>", 
+					1, 
+					0.7f, 
+					true, 
+					{255, 255, 255}
+				);
+
+				auto dialogueArray = CCArray::create();
+				dialogueArray->addObject(dialogue);
+
+				auto layer = DialogLayer::createDialogLayer(nullptr, dialogueArray, 2);
+				layer->animateInRandomSide();
+
+
+				auto soggyPortrait = CCSprite::create("sog.png"_spr);
+				soggyPortrait->setPosition(layer->m_characterSprite->getPosition());
+				soggyPortrait->setScale(0.7f);
+				layer->m_mainLayer->addChild(soggyPortrait);
+				layer->m_characterSprite->setVisible(false);
+				OverlayManager::get()->addChild(layer);
+
+			});
+			
+			
 		}
+	
 
 	}
 
