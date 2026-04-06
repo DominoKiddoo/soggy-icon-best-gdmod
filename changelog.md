@@ -1,8 +1,7 @@
-# 1.0.6
+# 1.0.7
 - Bypassed anticheat when entering the sog
 
-
-# 1.0.5
+# 1.0.6
 - Used onQuit() instead of onExit()
 
 # 1.0.5
