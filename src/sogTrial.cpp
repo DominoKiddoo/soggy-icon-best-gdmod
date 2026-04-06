@@ -108,9 +108,6 @@ class $modify(SoggyEndLevelLayer, EndLevelLayer) {
         Mod::get()->setSettingValue("disablesog", true);
         
 
-        
-        log::info("Soggy end layer customSetup reached!");
-
 
         auto dialogue = DialogObject::create(
             "soggy cat", 
