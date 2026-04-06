@@ -64,6 +64,8 @@ $on_mod(Loaded) {
                     CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));
                 } else {
                     log::error("failed: {}", levResult.unwrapErr());
+                    auto errorMessage = fmt::format("Failed to load soggy trial: {}\nPlease try disabling and re-enabling the setting", levResult.unwrapErr());
+                    FLAlertLayer::create("Error", errorMessage, "OK")->show();
                 }
 
 

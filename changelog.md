@@ -1,3 +1,7 @@
+# 1.0.71
+- Added alert if level fails to load.
+
+
 # 1.0.7
 - Bypassed anticheat when entering the sog
 
