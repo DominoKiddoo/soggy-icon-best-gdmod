@@ -1,3 +1,7 @@
+# 1.0.6
+- Bypassed anticheat when entering the sog
+
+
 # 1.0.5
 - Removed hardcoding Z order for Dialogue
 
@@ -7,7 +11,7 @@
 
 
 # 1.0.3
-- Changed mod logo so it doesn't look like [soggify](mod:firee.soggify))
+- Changed mod logo so it doesn't look like [soggify](mod:firee.soggify)
 
 # 1.0.2
 - Changed to pointers for speed

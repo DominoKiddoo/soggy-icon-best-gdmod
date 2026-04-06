@@ -3,6 +3,8 @@
 #include <Geode/utils/file.hpp>
 #include <Geode/modify/EndLevelLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
+#include <Geode/modify/GJBaseGameLayer.hpp>
+
 #include "../include/globalVars.hpp"
 
 using namespace geode::prelude;
@@ -46,17 +48,23 @@ $on_mod(Loaded) {
                 auto resDir = Mod::get()->getResourcesDir();
                 auto filePath = resDir / "level.txt"; 
 
-                auto levString = utils::file::readString(filePath).unwrap();
+                auto levResult = utils::file::readString(filePath);
 
-                level->m_levelString = levString;
-                level->m_levelName = "Soggy Sog Trials";
-                level->m_songID = 383158;
-                auto playLayer = PlayLayer::get();
+                if (levResult.isOk()) {
+                    auto levString = levResult.unwrap();
+                    
+                    level->m_levelString = levString;
+                    level->m_levelName = "Soggy Sog Trials";
+                    level->m_songID = 383158;
 
-                playingSoggyLevel = true;
+                    playingSoggyLevel = true;
 
-                auto scene = PlayLayer::scene(level, false, false);
-                CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));
+                    auto scene = PlayLayer::scene(level, false, false);
+                    playingSoggyLevel = true;
+                    CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));
+                } else {
+                    log::error("failed: {}", levResult.unwrapErr());
+                }
 
 
             });
@@ -83,7 +91,6 @@ class $modify(SoggyEndLevelLayer, EndLevelLayer) {
                 true, 
                 {255, 255, 255}
             );
-
             auto dialogueArray = CCArray::create();
             dialogueArray->addObject(dialogue);
 
@@ -144,3 +151,12 @@ class $modify(SoggyEndLevelLayer, EndLevelLayer) {
     }
     
 };  
+
+class $modify(GJBaseGameLayer) {
+    bool shouldExitHackedLevel() {
+        if (playingSoggyLevel) {
+            return false; 
+        }
+        return GJBaseGameLayer::shouldExitHackedLevel();
+    }
+};
