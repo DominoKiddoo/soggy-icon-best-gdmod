@@ -99,7 +99,7 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 			Loader::get()->queueInMainThread([this]() {
 				auto dialogue = DialogObject::create(
 					"soggy cat", 
-					"<cr>HAHA! YOU FAILED MY CHALLENGE!! TRY AGAIN WHEN YOU HAVE THE SKILL, THEN YOU MAY DISABLE ME!</c>", 
+					"<cr>HAHA! YOU FAILED MY CHALLENGE!! TRY AGAIN WHEN YOU HAVE THE SKILL, THEN YOU MAY DISABLE ME!</c> (btw if you really do need to disable the icons, use the <cy>geode toggle</c> i wont judge)", 
 					1, 
 					0.7f, 
 					true, 

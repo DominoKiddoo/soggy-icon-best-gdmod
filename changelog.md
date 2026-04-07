@@ -1,6 +1,8 @@
+# 1.0.9
+- Added extra dialogue informing the user you can use the geode toggle if you are desperate 
+
 # 1.0.8
 - Added alert if level fails to load.
-
 
 # 1.0.7
 - Bypassed anticheat when entering the sog
