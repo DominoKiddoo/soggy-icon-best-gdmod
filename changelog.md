@@ -1,3 +1,6 @@
+# 1.0.10
+- Fixed android crash
+
 # 1.0.9
 - Added extra dialogue informing the user you can use the geode toggle if you are desperate 
 

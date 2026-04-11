@@ -21,7 +21,11 @@ $on_mod(Loaded) {
     auto MDM = MusicDownloadManager::sharedState();
     auto GLM = GameLevelManager::get();
 
+
 	GLM->downloadLevel(62912799, false, false);
+    MDM->downloadSong(383158);
+
+    /*
     #ifdef GEODE_IS_ANDROID
 		std::filesystem::path p = MDM->pathForSong(383158).c_str();
 		if (!std::filesystem::exists(p.parent_path() / "383158.mp3"_spr))
@@ -30,6 +34,7 @@ $on_mod(Loaded) {
 		if (!MDM->isSongDownloaded(383158)) 
 			std::filesystem::copy(Mod::get()->getResourcesDir() / "383158.mp3", std::filesystem::path(MDM->pathForSong(383158).c_str()));
 	#endif
+    */
 
     listenForSettingChanges<bool>("disablesog", [](bool value) {
 
