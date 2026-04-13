@@ -16,14 +16,17 @@ $on_mod(Loaded) {
     auto mod = Mod::get();
     playingSoggyLevel = false;
 
-    
-    // download song. code adapted from Weebify
-    auto MDM = MusicDownloadManager::sharedState();
-    auto GLM = GameLevelManager::get();
+    Loader::get()->queueInMainThread([]() {
+        // download song. code adapted from Weebify
+        auto MDM = MusicDownloadManager::sharedState();
+        auto GLM = GameLevelManager::get();
 
 
-	GLM->downloadLevel(62912799, false, false);
-    MDM->downloadSong(383158);
+        if (!MDM->isSongDownloaded(383158)) {
+            MDM->downloadSong(383158);
+        }
+        
+    });
 
     /*
     #ifdef GEODE_IS_ANDROID
