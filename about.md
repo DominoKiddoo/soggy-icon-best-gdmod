@@ -2,6 +2,8 @@
 
 sog up your icon
 
+###### <cg>Update 1.1.0 has added some cool extra settings! Try them out!</cg>
+
 ## reviews
 *"finally a useful mod"*
 - capeling, soggy mod creator

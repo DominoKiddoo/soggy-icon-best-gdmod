@@ -1,3 +1,6 @@
+# 1.1.0
+- Added some cool extra settings! Go check them out!
+
 # 1.0.10
 - Fixed android crash
 
