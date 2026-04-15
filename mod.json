@@ -52,7 +52,7 @@
 			"type": "bool",
 			"default": false,
 			"name": "stretch on click",
-			"description": ""
+			"description": "makes the sog "
 		},
 
 		"otherthings": {

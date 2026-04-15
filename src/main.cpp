@@ -99,30 +99,35 @@ class $modify(SoggyPlayLayer, PlayLayer) {
 
 
 		// ooh cool squish thing
-		if (!m_fields->m_isTwoPlayerMode) {
-			if (!m_fields->isHolding) {
-				sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
-				sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
 
+		if (Mod::get()->getSettingValue<bool>("stretch")) {
+			if (!m_fields->m_isTwoPlayerMode) {
+				if (!m_fields->isHolding) {
+					sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
+					sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
+
+				} else {
+					sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY * 1.8f - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
+					sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY * 1.8f - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
+				}
 			} else {
-				sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY * 1.8f - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
-				sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY * 1.8f - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
-			}
-		} else {
-			if (!m_fields->isHoldingP1) {
-				sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
+				if (!m_fields->isHoldingP1) {
+					sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
 
-			} else {
-				sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY * 1.8f - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
-			}
+				} else {
+					sogIcon->setScaleY(sogIcon->getScaleY() + (m_fields->m_sogIconP1ActualScaleY * 1.8f - sogIcon->getScaleY()) * std::min(1.0f, dt * 15.0f));
+				}
 
-			if (!m_fields->isHoldingP2) {
-				sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
+				if (!m_fields->isHoldingP2) {
+					sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
 
-			} else {
-				sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY * 1.8f - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
+				} else {
+					sogIconP2->setScaleY(sogIconP2->getScaleY() + (m_fields->m_sogIconP2ActualScaleY * 1.8f - sogIconP2->getScaleY()) * std::min(1.0f, dt * 15.0f));
+				}
 			}
+		
 		}
+
 
 		sogIcon->setPosition(baseGameLayer->m_player1->m_position);
 		sogIconP2->setPosition(baseGameLayer->m_player2->m_position);
@@ -208,7 +213,7 @@ class $modify(BJHookLayer, GJBaseGameLayer) {
 
 		
 		
-		if (button != 1) {
+		if (button != 1 || Mod::get()->getSettingValue<bool>("stretch") == false) {
 			return;
 		}
 		
