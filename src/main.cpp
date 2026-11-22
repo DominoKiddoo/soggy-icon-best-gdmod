@@ -27,8 +27,8 @@ class $modify(SoggyPlayLayer, PlayLayer) {
     };
 
 	// there is a commment here to prove i am not a fuck map
-	bool init(GJGameLevel* level, bool useReplay, bool dontCreateObjects) {
-		if (!PlayLayer::init(level, useReplay, dontCreateObjects)) {
+	bool init(GJGameLevel* level, bool dontCreateObjects) {
+		if (!PlayLayer::init(level, dontCreateObjects)) {
 			return false;
 		}
 

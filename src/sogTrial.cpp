@@ -67,7 +67,7 @@ $on_mod(Loaded) {
 
                     playingSoggyLevel = true;
 
-                    auto scene = PlayLayer::scene(level, false, false);
+                    auto scene = PlayLayer::scene(level, false);
                     playingSoggyLevel = true;
                     CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, scene));
                 } else {
